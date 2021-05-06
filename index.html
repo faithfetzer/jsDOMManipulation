@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <p id="testParagraph">sample text</p>
+    <p class="sampleClass">This paragraph has a class of 'sampleClass'</p>
+    <button id ="clickThisButton">I want to be clicked</button>
+    <label for="nameInput">Enter Your Name:</label>
+    <input type="text" id="nameInput" placeholder="John Smith" />
+    <p>Welcome!</p>
+    <p>No name has been entered</p>
+    
+    <script type="text/javascript">
+        var x = 10;
+        console.log(x);
+        document.getElementById('testParagraph').style.color = 'blue';
+        console.log(document.querySelectorAll('p.sampleClass'));
+        document.querySelectorAll('p.sampleClass')[0].innerText = 'My text was changed!';
+        // only updates text
+        document.querySelectorAll('p.sampleClass')[0].innerHTML = "<span>I am a new element</span>";
+        // updates html
+        document.querySelectorAll('p.sampleClass')[0].innerHTML = "";
+        // set html to blank and it "removes" to paragraph
+        document.getElementById('clickThisButton').addEventListener('click', () => console.log("I was clicked"));
+        // event listeners- console log
+        document.getElementById('clickThisButton').addEventListener('click', (details) => {details.target.style.backgroundColor = 'red';})
+        // target the item to change background color to red
+        document.getElementById('nameInput').addEventListener('keyup', (event) => {console.log(event);});
+        document.getElementById('nameInput').addEventListener('keyup', (event) => {
+           document.getElementsByTagName('p')[3].innerText = event.target.value;
+        });
+        // take th einput text event.target.value and put it into the text for the 4th ([3]) paragraph
+        // make it so that if name was delted and back to zero, would go back to "no name has been entered"
+        document.getElementById('nameInput').addEventListener('keyup', (event) => {
+            if (event.target.value === '') {
+                document.getElementsByTagName('p')[3].innerText = 'No name has been entered';
+            } else {document.getElementsByTagName('p')[3].innerText = `Everyone, please welcome ${event.target.value}.`}
+        });
+    </script>
+</body>
+</html>
